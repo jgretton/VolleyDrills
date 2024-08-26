@@ -4,15 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\Drill;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class DrillController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index():Response
     {
-        //
+        return Inertia::render('Dashboard/Drills/Index', [
+            'drills' => Drill::latest()->get(),
+        ]);
     }
 
     /**

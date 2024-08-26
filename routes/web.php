@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DrillController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -23,5 +24,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get('/dashboard/drills', [DrillController::class, 'index'])
+->middleware(['auth','verified'])
+->name('dashboard.drills');
 
 require __DIR__.'/auth.php';

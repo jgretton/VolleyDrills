@@ -135,8 +135,12 @@ class DrillController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Drill $drill)
+    public function destroy(Drill $drill): RedirectResponse
     {
-        //
+        Gate::authorize('delete', $drill);
+
+        $drill->delete();
+
+        return redirect(route('dashboard.drills'));
     }
 }

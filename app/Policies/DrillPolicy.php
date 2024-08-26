@@ -29,7 +29,6 @@ class DrillPolicy
      */
     public function create(User $user): bool
     {
-        //
     }
 
     /**
@@ -45,7 +44,7 @@ class DrillPolicy
      */
     public function delete(User $user, Drill $drill): bool
     {
-        //
+        return $this->update($user, $drill);
     }
 
     /**

@@ -1,6 +1,6 @@
 import InputError from "@/Components/InputError";
 import Authenticated from "@/Layouts/AuthenticatedLayout";
-import { Head, useForm, usePage } from "@inertiajs/react";
+import { Head, Link, useForm, usePage } from "@inertiajs/react";
 import React, { useState } from "react";
 
 export default function Show({ auth, drill }) {
@@ -84,6 +84,15 @@ export default function Show({ auth, drill }) {
                         Update
                     </button>
                 )}
+                <Link
+                    className="rounded-md bg-red-100 text-red-700 border-red-600 border-2 px-3 mx-2 py-1.5"
+                    href={route("drills.destroy", drill.id)}
+                    as="button"
+                    method="delete"
+                >
+                    Delete
+                </Link>
+
                 <div className="w-full p-6 bg-white rounded-md mt-10 flex flex-col gap-3">
                     {editing ? (
                         <div className="">

@@ -26,7 +26,11 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('/dashboard/drills', DrillController::class)
-    ->middleware(['auth', 'verified'])->name('index','dashboard.drills');
+    ->middleware(['auth', 'verified'])->names([
+        'index'=> 'dashboard.drills',
+        'show' => 'dashboard.drills.show',
+        'create' =>'dashboard.drills.create'
+    ]);
 
 
 require __DIR__.'/auth.php';

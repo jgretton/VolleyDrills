@@ -13,9 +13,11 @@ export default function Index({ auth, drills }) {
             }
         >
             <Head title="Your Drills" />
-
             <div className="max-w-7xl mx-auto p-10">
-                <ul className="flex flex-col bg-white rounded-md p-6 gap-10">
+                <Link href="/dashboard/drills/create" className="">
+                    + Add new drill
+                </Link>
+                <ul className="flex flex-col bg-white rounded-md p-6 gap-10 mt-10">
                     {drills.map((drill, index) => (
                         <Link href="" key={index} className="hover:underline">
                             {drill.title}

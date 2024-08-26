@@ -22,7 +22,7 @@ class Drill extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function autor(){
+    public function user(){
         return $this->belongsTo(User::class);
     }
 }

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('small_description');
             $table->text('description');
-            $table->json('equipment');
+            $table->json('equipment')->nullable();
             $table->json('objectives');
             $table->string('difficulty');
             $table->integer('duration');

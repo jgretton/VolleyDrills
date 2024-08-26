@@ -4,7 +4,7 @@ import { Head, useForm } from "@inertiajs/react";
 import InputError from "@/Components/InputError";
 import PrimaryButton from "@/Components/PrimaryButton";
 
-export default function Index({ auth }) {
+export default function Create({ auth }) {
     const { data, setData, post, processing, reset, errors } = useForm({
         title: "",
         small_description: "",

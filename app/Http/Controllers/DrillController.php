@@ -25,7 +25,7 @@ class DrillController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Dashboard/Drills/Create/Index', [
+        return Inertia::render('Dashboard/Drills/Create', [
         ]);
     }
 

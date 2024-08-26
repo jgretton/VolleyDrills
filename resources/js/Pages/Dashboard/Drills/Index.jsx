@@ -14,12 +14,17 @@ export default function Index({ auth, drills }) {
         >
             <Head title="Your Drills" />
             <div className="max-w-7xl mx-auto p-10">
-                <Link href="/dashboard/drills/create" className="">
+                <Link href={route("dashboard.drills.create")} className="">
                     + Add new drill
                 </Link>
                 <ul className="flex flex-col bg-white rounded-md p-6 gap-10 mt-10">
                     {drills.map((drill, index) => (
-                        <Link href="" key={index} className="hover:underline">
+                        <Link
+                            // href={`dashboard/drills/${drill.id}`}
+                            href={route("dashboard.drills.show", drill.id)}
+                            key={index}
+                            className="hover:underline"
+                        >
                             {drill.title}
                         </Link>
                     ))}

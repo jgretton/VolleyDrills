@@ -16,7 +16,7 @@ class DrillController extends Controller
     public function index():Response
     {
         return Inertia::render('Dashboard/Drills/Index', [
-            'drills' => Drill::latest()->get(),
+            'drills' => Drill::orderBy('updated_at', 'desc')->get(),
         ]);
     }
 

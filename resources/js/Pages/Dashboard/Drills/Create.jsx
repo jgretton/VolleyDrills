@@ -209,7 +209,8 @@ export default function Create({ auth }) {
                                             }}
                                             className="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
                                         />
-                                        {index == 0 ? null : (
+                                        {index == 0 &&
+                                        data.objectives.length <= 1 ? null : (
                                             <button
                                                 className="px-3 py-1.5 bg-red-100 rounded-md"
                                                 type="button"

@@ -40,8 +40,27 @@ class DrillController extends Controller
             'description'=> 'required|string',
             'duration'=> 'required|integer',
             'difficulty'=> 'required|string',
-            'equipment'=> 'array',
-            'objectives'=> 'required|array',
+            'equipment'=> [
+                'array',
+                function ($attribute, $value, $fail) {
+                    foreach ($value as $equipment) {
+                        if (trim($equipment) === '') {
+                            $fail('The Equipment field cannot be empty');
+                        }
+                    }
+                }
+            ],
+            'objectives'=> [
+                'required',
+                'array',
+                function ($attribute, $value, $fail) {
+                    foreach ($value as $objective) {
+                        if (trim($objective) === '') {
+                            $fail('The objective field is required');
+                        }
+                    }
+                }
+            ],
             'category_id'=> 'required|',
         ]);
 

@@ -45,7 +45,7 @@ class DrillController extends Controller
                 function ($attribute, $value, $fail) {
                     foreach ($value as $equipment) {
                         if (trim($equipment) === '') {
-                            $fail('The Equipment field cannot be empty');
+                            $fail('The Equipment cannot have empty fields');
                         }
                     }
                 }

@@ -29,14 +29,13 @@ class DrillFactory extends Factory
                 'key_3' => fake()->word(),
             ],
             'objectives'=> [
-                'key_1' => fake()->word(),
-                'key_2' => fake()->word(),
-                'key_3' => fake()->word(),
+                'key_1' => fake()->sentence(),
+                'key_2' => fake()->sentence(),
+                'key_3' => fake()->sentence(),
             ],
             'difficulty' => 'Advanced',
             'duration' => fake()->numberBetween(0, 30),
             'category_id'=>Category::factory(),
-            
         ];
     }
 }

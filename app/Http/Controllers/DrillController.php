@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Drill;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -24,15 +25,29 @@ class DrillController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Dashboard/Drills/Create/Index', [
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        //
+        $validated = $request->validate([
+            'title'=>'required|string',
+            'small_description'=> 'required|string',
+            'description'=> 'required|string',
+            'duration'=> 'required|integer',
+            'difficulty'=> 'required|string',
+            'equipment'=> 'array',
+            'objectives'=> 'required|array',
+            'category_id'=> 'required|',
+        ]);
+
+        $request->user()->drills()->create($validated);
+
+        return redirect(route('dashboard.drills'));
     }
 
     /**

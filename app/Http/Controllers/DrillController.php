@@ -76,7 +76,6 @@ class DrillController extends Controller
     {
         return Inertia::render('Dashboard/Drills/Show', [
             'drill' => $drill,
-            'id'=>$drill->id
         ]);
     }
 

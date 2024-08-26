@@ -72,9 +72,12 @@ class DrillController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Drill $drill)
+    public function show(Drill $drill): Response
     {
-        //
+        return Inertia::render('Dashboard/Drills/Show', [
+            'drill' => $drill,
+            'id'=>$drill->id
+        ]);
     }
 
     /**
@@ -82,7 +85,7 @@ class DrillController extends Controller
      */
     public function edit(Drill $drill)
     {
-        //
+
     }
 
     /**

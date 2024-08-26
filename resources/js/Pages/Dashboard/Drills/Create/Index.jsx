@@ -15,10 +15,12 @@ export default function Index({ auth }) {
         objectives: [""],
         category_id: "1",
     });
-
     const submit = (e) => {
         e.preventDefault();
-        post(route("drills.store"), { onSuccess: () => reset() });
+
+        post(route("drills.store"), {
+            onSuccess: () => reset(),
+        });
     };
 
     return (
@@ -143,11 +145,19 @@ export default function Index({ auth }) {
                                             className="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
                                         />
                                         <button
-                                            className="px-3 py-1.5 bg-red-100 rounded-md"
+                                            className="px-3 py-1.5 border-2 border-red-400 hover:bg-gray-100 text-red-400 rounded-md"
                                             type="button"
-                                            onClick={() =>
-                                                data.equipment.splice(index, 1)
-                                            }
+                                            onClick={() => {
+                                                const newEquipment =
+                                                    data.equipment.filter(
+                                                        (_, i) => i !== index
+                                                    );
+                                                // Update the state with the new array
+                                                setData(
+                                                    "equipment",
+                                                    newEquipment
+                                                );
+                                            }}
                                         >
                                             -
                                         </button>
@@ -203,12 +213,17 @@ export default function Index({ auth }) {
                                             <button
                                                 className="px-3 py-1.5 bg-red-100 rounded-md"
                                                 type="button"
-                                                onClick={() =>
-                                                    data.objectives.splice(
-                                                        index,
-                                                        1
-                                                    )
-                                                }
+                                                onClick={() => {
+                                                    const newObjectives =
+                                                        data.objectives.filter(
+                                                            (_, i) =>
+                                                                i !== index
+                                                        );
+                                                    setData(
+                                                        "objectives",
+                                                        newObjectives
+                                                    );
+                                                }}
                                             >
                                                 -
                                             </button>

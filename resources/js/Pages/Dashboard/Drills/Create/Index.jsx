@@ -45,6 +45,10 @@ export default function Index({ auth }) {
                                 }
                                 className="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
                             />
+                            <InputError
+                                message={errors.title}
+                                className="mt-2"
+                            />
                         </div>
                         <div className="">
                             <label>Small Description</label>
@@ -56,6 +60,10 @@ export default function Index({ auth }) {
                                 }
                                 className="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
                             />
+                            <InputError
+                                message={errors.small_description}
+                                className="mt-2"
+                            />
                         </div>
                         <div className="">
                             <label>Description</label>
@@ -66,6 +74,10 @@ export default function Index({ auth }) {
                                     setData("description", e.target.value)
                                 }
                             ></textarea>
+                            <InputError
+                                message={errors.description}
+                                className="mt-2"
+                            />
                         </div>
                         <div className="">
                             <label>Duration</label>
@@ -76,6 +88,10 @@ export default function Index({ auth }) {
                                     setData("duration", e.target.value)
                                 }
                                 className="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                            />
+                            <InputError
+                                message={errors.duration}
+                                className="mt-2"
                             />
                         </div>
                         <div className="">
@@ -97,6 +113,10 @@ export default function Index({ auth }) {
                                 </option>
                                 <option value="Advanced">Advanced</option>
                             </select>
+                            <InputError
+                                message={errors.difficulty}
+                                className="mt-2"
+                            />
                         </div>
                         <div className="">
                             <label>Equipment</label>
@@ -150,6 +170,10 @@ export default function Index({ auth }) {
                                     <span>Add another equipment +</span>
                                 )}
                             </button>
+                            <InputError
+                                message={errors.equipment}
+                                className="mt-2"
+                            />
                         </div>
                         <div className="">
                             <label>Objectives</label>
@@ -204,9 +228,12 @@ export default function Index({ auth }) {
                             >
                                 Add another objectives +
                             </button>
+                            <InputError
+                                message={errors.objectives}
+                                className="mt-2"
+                            />
                         </div>
 
-                        <InputError message={errors.title} className="mt-2" />
                         <PrimaryButton className="mt-4" disabled={processing}>
                             Submit
                         </PrimaryButton>

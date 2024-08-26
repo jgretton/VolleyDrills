@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Drill;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -90,9 +92,44 @@ class DrillController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Drill $drill)
+    public function update(Request $request, Drill $drill): RedirectResponse
     {
-        //
+        Gate::authorize('update', $drill);
+        
+        $validated = $request->validate([
+            'title'=>'required|string',
+            'small_description'=> 'required|string',
+            'description'=> 'required|string',
+            'duration'=> 'required|integer',
+            'difficulty'=> 'required|string',
+            'equipment'=> [
+                'array',
+                function ($attribute, $value, $fail) {
+                    foreach ($value as $equipment) {
+                        if (trim($equipment) === '') {
+                            $fail('The Equipment cannot have empty fields');
+                        }
+                    }
+                }
+            ],
+            'objectives'=> [
+                'required',
+                'array',
+                function ($attribute, $value, $fail) {
+                    foreach ($value as $objective) {
+                        if (trim($objective) === '') {
+                            $fail('The objective field is required');
+                        }
+                    }
+                }
+            ],
+            'category_id'=> 'required|',
+        ]);
+
+        $drill->update($validated);
+        return redirect(route('dashboard.drills.show', $drill))
+        ->with('success', 'Drill updated successfully');
+
     }
 
     /**

@@ -17,15 +17,17 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
         
-        Category::factory()->count(3);
+        // Category::factory()->count(3);
 
-        User::factory()
-        ->has(Drill::factory()->count(5))
-        ->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        // User::factory()
+        // ->has(Drill::factory()->count(5))
+        // ->create([
+        //     'name' => 'Test User',
+        //     'email' => 'test@example.com',
+        // ]);
 
-        // Drill::factory(5)->create();
+        Drill::factory(5)->create([
+            'user_id' =>'1',
+    ]);
     }
 }

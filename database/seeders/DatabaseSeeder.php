@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
+use App\Models\Drill;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -14,10 +16,16 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // User::factory(10)->create();
+        
+        Category::factory()->count(3);
 
-        User::factory()->create([
+        User::factory()
+        ->has(Drill::factory()->count(5))
+        ->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
+
+        // Drill::factory(5)->create();
     }
 }

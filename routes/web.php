@@ -25,8 +25,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/dashboard/drills', [DrillController::class, 'index'])
-->middleware(['auth','verified'])
-->name('dashboard.drills');
+Route::resource('/dashboard/drills', DrillController::class)
+    ->middleware(['auth', 'verified'])->name('index', 'dashboard.drills');
+
 
 require __DIR__.'/auth.php';

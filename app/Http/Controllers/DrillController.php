@@ -18,7 +18,7 @@ class DrillController extends Controller
     public function index():Response
     {
         return Inertia::render('Dashboard/Drills/Index', [
-            'drills' => Drill::orderBy('updated_at', 'desc')->paginate(10),
+            'drills' => Drill::with('category')->orderBy('updated_at', 'desc')->paginate(10),
         ]);
     }
 

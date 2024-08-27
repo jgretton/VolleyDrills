@@ -2,7 +2,9 @@ import { Link } from "@inertiajs/react";
 import React from "react";
 
 export default function DrillCard({ drill }) {
-    const { title, small_description, duration } = drill;
+    const { title, small_description, duration, category } = drill;
+
+    console.log(drill);
     return (
         <Link
             // href={`dashboard/drills/${drill.id}`}
@@ -14,7 +16,7 @@ export default function DrillCard({ drill }) {
             </h2>
             <div className="mt-2 inline-flex items-center gap-2">
                 <p className="font-light text-sm">{duration} mins</p>-
-                <span>Hitting</span>
+                <span>{category.name}</span>
             </div>
             <p className="mt-4">{small_description}</p>
         </Link>

@@ -32,7 +32,15 @@ export default function Authenticated({ user, header, children }) {
                                     href={route("dashboard.drills")}
                                     active={route().current("dashboard.drills")}
                                 >
-                                    Your Drills
+                                    Drills
+                                </NavLink>
+                                <NavLink
+                                    href={route("dashboard.categories")}
+                                    active={route().current(
+                                        "dashboard.categories"
+                                    )}
+                                >
+                                    Categories
                                 </NavLink>
                             </div>
                         </div>
@@ -142,7 +150,13 @@ export default function Authenticated({ user, header, children }) {
                             href={route("dashboard.drills")}
                             active={route().current("dashboard.drills")}
                         >
-                            Your Drills
+                            Drills
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            href={route("dashboard.categories")}
+                            active={route().current("dashboard.categories")}
+                        >
+                            Categories
                         </ResponsiveNavLink>
                     </div>
 

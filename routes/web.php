@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DrillController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -30,6 +31,11 @@ Route::resource('/dashboard/drills', DrillController::class)
         'index'=> 'dashboard.drills',
         'show' => 'dashboard.drills.show',
         'create' =>'dashboard.drills.create'
+    ]);
+
+    Route::resource('/dashboard/categories', CategoryController::class)
+    ->middleware(['auth', 'verified'])->names([
+        'index' => 'dashboard.categories',
     ]);
 
 

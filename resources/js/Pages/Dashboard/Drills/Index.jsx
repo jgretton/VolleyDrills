@@ -1,4 +1,5 @@
 import DrillCard from "@/Components/DrillCard";
+import Pagination from "@/Components/Pagination";
 import Authenticated from "@/Layouts/AuthenticatedLayout";
 import { Head, Link } from "@inertiajs/react";
 import React from "react";
@@ -18,16 +19,6 @@ export default function Index({ auth, drills }) {
                 <Link href={route("dashboard.drills.create")} className="">
                     + Add new drill
                 </Link>
-                <ul className="flex flex-col bg-white rounded-md p-6 gap-10 mt-10">
-                    {drills.map((drill, index) => (
-                        <Link
-                            // href={`dashboard/drills/${drill.id}`}
-                            href={route("dashboard.drills.show", drill.id)}
-                            key={index}
-                            className="hover:underline"
-                        >
-                            {drill.title}
-                        </Link>
                 <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 rounded-md p-6 gap-10 mt-10">
                     {drills.data.map((drill, index) => (
                         <li key={index} className="">
@@ -35,6 +26,10 @@ export default function Index({ auth, drills }) {
                         </li>
                     ))}
                 </ul>
+
+                <div className="flex items-center w-full justify-center mt-20">
+                    <Pagination links={drills.links} />
+                </div>
             </div>
         </Authenticated>
     );

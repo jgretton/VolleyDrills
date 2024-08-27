@@ -1,3 +1,4 @@
+import DrillCard from "@/Components/DrillCard";
 import Authenticated from "@/Layouts/AuthenticatedLayout";
 import { Head, Link } from "@inertiajs/react";
 import React from "react";
@@ -27,6 +28,11 @@ export default function Index({ auth, drills }) {
                         >
                             {drill.title}
                         </Link>
+                <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 rounded-md p-6 gap-10 mt-10">
+                    {drills.data.map((drill, index) => (
+                        <li key={index} className="">
+                            <DrillCard drill={drill} />
+                        </li>
                     ))}
                 </ul>
             </div>

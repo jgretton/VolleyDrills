@@ -7,7 +7,7 @@ export default function DrillCard({ drill }) {
         <Link
             // href={`dashboard/drills/${drill.id}`}
             href={route("dashboard.drills.show", drill.id)}
-            className="group bg-white px-4 py-6 max-w-md w-full block rounded-lg shadow-sm"
+            className="group bg-white px-4 py-6 max-w-md w-full block rounded-lg shadow-sm h-full"
         >
             <h2 className="group-hover:underline capitalize font-semibold text-xl">
                 {title}

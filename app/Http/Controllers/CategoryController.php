@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Drill;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -16,7 +17,7 @@ class CategoryController extends Controller
     public function index(): Response
     {
         return Inertia::render('Dashboard/Categories/Index', [
-            'categories' => Category::get(),
+            'categories' => Category::withCount('drills')->get(),
 
         ]);
     }
@@ -65,16 +66,32 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, Category $category): RedirectResponse
     {
-        //
+        // dd($request);
+        $validated = $request->validate([
+            'name'=> 'required|string|unique:categories',
+       ], [
+           'name.unique' => 'This category already exists'
+       ]);
+
+        $category->update($validated);
+       return redirect(route('dashboard.categories'))
+       ->with('success', 'Category updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $category)
+    public function destroy(Category $category): RedirectResponse
     {
-        //
+//Check to see if the category has drills
+        if($category->drills()->count()) {
+            return redirect(route('dashboard.categories'))->with('error', 'Cannot delete categories that have drills.');
+        };
+
+        $category->delete();
+
+        return redirect(route('dashboard.categories'))->with('success', 'Category deleted successfully');
     }
 }

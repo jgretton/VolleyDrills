@@ -4,7 +4,6 @@ import React from "react";
 export default function DrillCard({ drill }) {
     const { title, small_description, duration, category } = drill;
 
-    console.log(drill);
     return (
         <Link
             // href={`dashboard/drills/${drill.id}`}

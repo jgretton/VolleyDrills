@@ -4,7 +4,7 @@ import { Head, useForm } from "@inertiajs/react";
 import InputError from "@/Components/InputError";
 import PrimaryButton from "@/Components/PrimaryButton";
 
-export default function Create({ auth }) {
+export default function Create({ auth, categories }) {
     const { data, setData, post, processing, reset, errors } = useForm({
         title: "",
         small_description: "",
@@ -13,7 +13,7 @@ export default function Create({ auth }) {
         difficulty: "",
         equipment: [],
         objectives: [""],
-        category_id: "1",
+        category_id: "",
     });
     const submit = (e) => {
         e.preventDefault();
@@ -246,6 +246,31 @@ export default function Create({ auth }) {
                             </button>
                             <InputError
                                 message={errors.objectives}
+                                className="mt-2"
+                            />
+                        </div>
+
+                        <div className="">
+                            <label>Category</label>
+                            <select
+                                value={data.category_id}
+                                onChange={(e) =>
+                                    setData("category_id", e.target.value)
+                                }
+                                className="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                            >
+                                <option value="" disabled hidden>
+                                    Select category
+                                </option>
+
+                                {categories.map((category, index) => (
+                                    <option value={category.id} key={index}>
+                                        {category.name}
+                                    </option>
+                                ))}
+                            </select>
+                            <InputError
+                                message={errors.difficulty}
                                 className="mt-2"
                             />
                         </div>

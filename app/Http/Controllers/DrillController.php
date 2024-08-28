@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Drill;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -27,7 +28,10 @@ class DrillController extends Controller
      */
     public function create()
     {
+        $categories = Category::get(); 
+
         return Inertia::render('Dashboard/Drills/Create', [
+            'categories' => $categories
         ]);
     }
 
@@ -76,8 +80,10 @@ class DrillController extends Controller
      */
     public function show(Drill $drill): Response
     {
+
         return Inertia::render('Dashboard/Drills/Show', [
             'drill' => $drill,
+            
         ]);
     }
 

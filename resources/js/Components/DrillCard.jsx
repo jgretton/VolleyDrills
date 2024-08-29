@@ -9,9 +9,11 @@ export default function DrillCard({ drill }) {
             // href={`dashboard/drills/${drill.id}`}
             className=" bg-white px-4 py-6 max-w-md w-full block rounded-lg shadow-sm h-full"
         >
-            <span className="bg-gray-100 px-3 py-1.5 rounded-md">
-                {category.name}
-            </span>
+            {category && (
+                <span className="bg-gray-100 px-3 py-1.5 rounded-md">
+                    {category?.name}
+                </span>
+            )}
 
             <h2 className="capitalize font-semibold text-xl mt-4">{title}</h2>
             <div className="mt-2 inline-flex items-center gap-2">

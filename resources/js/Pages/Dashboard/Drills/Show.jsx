@@ -3,8 +3,15 @@ import Authenticated from "@/Layouts/AuthenticatedLayout";
 import { Head, Link, useForm, usePage } from "@inertiajs/react";
 import React, { useState } from "react";
 
-export default function Show({ auth, drill }) {
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+import SecondaryButton from "@/Components/SecondaryButton";
+import DangerButton from "@/Components/DangerButton";
+import { ClockIcon, UserGroupIcon } from "@heroicons/react/24/outline";
+
+export default function Show({ auth, drill, categories, category }) {
     const { flash } = usePage().props;
+    dayjs.extend(relativeTime);
 
     const {
         title,
@@ -17,6 +24,7 @@ export default function Show({ auth, drill }) {
         updated_at,
         category_id,
         difficulty,
+        min_required_players,
     } = drill;
 
     const InitialData = {
@@ -59,7 +67,7 @@ export default function Show({ auth, drill }) {
                 </div>
             )}
 
-            <form onSubmit={submit} className="max-w-7xl mt-10 mx-auto px-6">
+            {/* <form onSubmit={submit} className="max-w-7xl mt-10 mx-auto px-6">
                 <button
                     className={`rounded-md border-2 px-3 py-1.5 ${
                         editing
@@ -233,8 +241,140 @@ export default function Show({ auth, drill }) {
                     ) : (
                         <p>{description}</p>
                     )}
+
+                    {editing ? (
+                        <div className="">
+                            <label>Category</label>
+                            <select
+                                value={data.category_id}
+                                onChange={(e) =>
+                                    setData("category_id", e.target.value)
+                                }
+                                className="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                            >
+                                <option value="" disabled hidden>
+                                    Select category
+                                </option>
+
+                                {categories.map((category, index) => (
+                                    <option value={category.id} key={index}>
+                                        {category.name}
+                                    </option>
+                                ))}
+                            </select>
+                            <InputError
+                                message={errors.difficulty}
+                                className="mt-2"
+                            />
+                        </div>
+                    ) : (
+                        <p>{category.name}</p>
+                    )}
                 </div>
-            </form>
+            </form> */}
+
+            <div className="max-w-7xl mx-auto px-6 mt-12">
+                <Link href={route("dashboard.drills")}>Back</Link>
+
+                <div className="w-full rounded-md  mt-10 flex gap-10">
+                    <div className="w-3/4 rounded-lg bg-white shadow-sm p-10">
+                        <div className="flex gap-4 flex-col">
+                            <h2 className="font-bold text-3xl  capitalize">
+                                {title}
+                            </h2>
+                            <p className="font-light text-gray-700 -mt-2">
+                                {small_description}
+                            </p>
+                            <div className="inline-flex items-center  divide-x mt-4">
+                                <div className="pr-6">
+                                    <p className="font-semibold">Difficulty</p>
+                                    <p className="text-sm">{difficulty}</p>
+                                </div>
+                                <div className="px-6">
+                                    <p className="font-semibold">Duration</p>
+                                    <p className="inline-flex items-center gap-1 text-sm">
+                                        <ClockIcon className="size-4" />{" "}
+                                        {duration}{" "}
+                                        {duration === 1 ? " min" : "mins"}
+                                    </p>
+                                </div>
+                                <div className="px-6">
+                                    <p className="font-semibold">
+                                        Min required players
+                                    </p>
+                                    <p className="inline-flex items-center gap-1 text-sm text-gray-600">
+                                        <UserGroupIcon className="size-4" />{" "}
+                                        {min_required_players}
+                                    </p>
+                                </div>
+                            </div>
+                            {equipment.length > 1 ? (
+                                <div className=" mt-4">
+                                    <p className="font-semibold">Equipment</p>
+                                    <ul className="list-disc pl-6">
+                                        {equipment.map((item, index) => (
+                                            <li
+                                                className="text-gray-600 leading-6"
+                                                key={index}
+                                            >
+                                                {item}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            ) : (
+                                <div className=" mt-4">
+                                    <p className="font-semibold">Equipment</p>
+                                    <p className="inline-flex items-center gap-1 text-gray-600">
+                                        No equipment required for this drill
+                                    </p>
+                                </div>
+                            )}
+                            <div className="mt-4">
+                                <p className="font-semibold">Objectives</p>
+                                <small className=" text-sm text-gray-600">
+                                    Outlining the objectives of the drill.
+                                    Things that the players should be aiming to
+                                    achieve.
+                                </small>
+                                <ul className="list-disc pl-6 mt-1.5">
+                                    {objectives.map((objective, index) => (
+                                        <li
+                                            className="text-gray-600 leading-6"
+                                            key={index}
+                                        >
+                                            {objective}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                            <div className="mt-4">
+                                <p className="text-gray-600">{description}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="w-1/4 h-fit rounded-lg bg-white p-6 flex gap-5 flex-col shadow-sm max-h-fit">
+                        <div className="">
+                            <p className="font-semibold">Last Updated:</p>
+                            <small className="ml-1 text-sm text-gray-600">
+                                {dayjs(updated_at).fromNow()}
+                            </small>
+                        </div>
+                        <div className="">
+                            <p className="font-semibold">Created:</p>
+                            <small className="ml-1 text-sm text-gray-600">
+                                {new Date(created_at).toLocaleString()}
+                            </small>
+                        </div>
+
+                        <div className="space-x-2 mt-2">
+                            <SecondaryButton>Edit</SecondaryButton>
+                            <DangerButton>Delete</DangerButton>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </Authenticated>
     );
 }

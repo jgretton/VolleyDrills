@@ -3,18 +3,16 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DrillController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PublicDrillController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
+
+Route::get('/', [PublicDrillController::class, 'index', 
         'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
+        'canRegister' => Route::has('register')
     ]);
-});
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

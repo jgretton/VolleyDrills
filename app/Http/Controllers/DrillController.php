@@ -81,9 +81,12 @@ class DrillController extends Controller
     public function show(Drill $drill): Response
     {
 
+        $categories = Category::get();
+        
         return Inertia::render('Dashboard/Drills/Show', [
             'drill' => $drill,
-            
+            'category' => $drill->category,
+            'categories' => $categories
         ]);
     }
 

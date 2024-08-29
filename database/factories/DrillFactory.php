@@ -34,7 +34,8 @@ class DrillFactory extends Factory
                 fake()->sentence(),
             ],
             'difficulty' => 'Advanced',
-            'duration' => fake()->numberBetween(0, 30),
+            'duration' => fake()->numberBetween(1, 30),
+            'min_required_players' => fake()->numberBetween(1, 8),
             'category_id'=>Category::factory(),
         ];
     }

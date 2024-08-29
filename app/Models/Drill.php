@@ -9,7 +9,7 @@ class Drill extends Model
 {
     use HasFactory;
     
-    protected $fillable = ['title', 'description', 'category_id', 'objectives', 'small_description','equipment', 'duration','difficulty'];
+    protected $fillable = ['title', 'description', 'category_id', 'objectives', 'small_description','equipment', 'duration','difficulty', 'min_required_players'];
     
     protected $casts = [
         'objectives' => 'array',

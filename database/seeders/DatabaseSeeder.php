@@ -15,19 +15,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-        
-        // Category::factory()->count(3);
-
-        // User::factory()
-        // ->has(Drill::factory()->count(5))
-        // ->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
 
         Drill::factory(5)->create([
             'user_id' =>'1',
+            // 'category_id' => fake()->numberBetween(1,4)
     ]);
     }
 }

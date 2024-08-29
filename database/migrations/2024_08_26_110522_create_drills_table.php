@@ -22,6 +22,7 @@ return new class extends Migration
             $table->json('objectives');
             $table->string('difficulty');
             $table->integer('duration');
+            $table->integer('min_required_players');
             $table->foreignIdFor(User::class);
             $table->unsignedBigInteger('category_id')->nullable()->after('description'); // Adjust position as needed
 
